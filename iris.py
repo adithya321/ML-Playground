@@ -38,3 +38,30 @@ print test_data[2], test_target[2]
 
 print iris.feature_names
 print iris.target_names
+
+x = iris.data
+y = iris.target
+
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=.5)
+
+decisionTreeClassifier = tree.DecisionTreeClassifier()
+decisionTreeClassifier.fit(x_train, y_train)
+decisionTreeClassifierPredictions = decisionTreeClassifier.predict(x_test)
+print decisionTreeClassifierPredictions
+
+from sklearn.neighbors import KNeighborsClassifier
+
+kNeighboursClassifier = KNeighborsClassifier()
+kNeighboursClassifier.fit(x_train, y_train)
+kNeighboursClassifierPredictions = kNeighboursClassifier.predict(x_test)
+print kNeighboursClassifierPredictions
+
+from sklearn.metrics import accuracy_score
+
+print "accuracy_score"
+print "decisionTreeClassifierPredictions"
+print accuracy_score(y_test, decisionTreeClassifierPredictions)
+print "kNeighboursClassifierPredictions"
+print accuracy_score(y_test, kNeighboursClassifierPredictions)
